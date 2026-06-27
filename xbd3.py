@@ -69,8 +69,7 @@ def get_folder_media(folder_id, ct0, auth_token):
             with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=30) as r:
                 data = json.loads(r.read())
         except urllib.error.HTTPError as e:
-            body = e.read().decode(errors='replace')
-            log(f'  HTTP {e.code}: {body[:300]}')
+            log(f'  HTTP {e.code}: request failed')
             if e.code == 401:
                 log('  Auth failed - your credentials may have expired. Re-run save_creds.py.')
             break
